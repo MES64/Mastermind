@@ -8,6 +8,8 @@ class Board
   GUESSES_PER_ROW = 4
   HINTS_PER_ROW = 4
 
+  attr_reader :guesses
+
   def initialize
     @guesses = Array.new(MAX_GUESSES) { Array.new(GUESSES_PER_ROW, '.') }
     @hints = Array.new(MAX_GUESSES) { Array.new(HINTS_PER_ROW, '.') }
