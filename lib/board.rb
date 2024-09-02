@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 # Board conatins information about the guesses made and hints given
-# Constants: Guess colors available, hint colours available, number of guesses possible,
-#            and the number of guess and hint pegs possible per row
+# Constants: Number of guesses possible, and the number of guess and hint pegs possible per row
 # Methods include to_s and accessors for the guesses and hints
 class Board
   MAX_GUESSES = 12
