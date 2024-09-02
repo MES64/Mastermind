@@ -2,14 +2,14 @@
 
 require 'colorize'
 
-require_relative 'game'
+require_relative 'board'
 
 # Code Breaker has a method for making a guess
 class CodeBreaker
   def make_guess(board, guess_number)
     puts 'Enter Guess (e.g. rgbb) from:'
-    puts(Game::GUESS_COLORS.reduce('') { |output, (letter, color)| "#{output}#{letter} = #{'●'.colorize(color)} " })
-    guess = gets.chomp.chars until guess && Game::COMBINATIONS.include?(guess)
-    board.guesses[guess_number] = guess.map { |char| '●'.colorize(Game::GUESS_COLORS[char]) }
+    puts(Board::GUESS_COLORS.reduce('') { |output, (letter, color)| "#{output}#{letter} = #{'●'.colorize(color)} " })
+    guess = gets.chomp.chars until guess && Board::COMBINATIONS.include?(guess)
+    board.add_guess(guess, guess_number)
   end
 end

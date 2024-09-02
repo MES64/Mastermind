@@ -5,14 +5,11 @@ require_relative 'lib/code_breaker'
 require_relative 'lib/code_maker'
 
 board = Board.new
-puts board
 code_breaker = CodeBreaker.new
+code_maker = CodeMaker.new
+
+puts board
 code_breaker.make_guess(board, 0)
 puts board
-
-puts ''
-p CodeMaker.new.code
-p CodeMaker.new.code
-p CodeMaker.new.code
-p CodeMaker.new.code
-p CodeMaker.new.code
+code_maker.give_hint(board)
+p code_maker.code
