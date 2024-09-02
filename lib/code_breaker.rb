@@ -9,10 +9,10 @@ class CodeBreaker
   def initialize; end
 
   def make_guess(board, guess_number)
-    guess = Game::GUESS_COLORS.sample(4)
-
-    output = guess.map { |color| '●'.colorize(color) }
-    puts output.join(' ')
+    puts 'Enter Guess (e.g. rgbb) from:'
+    puts(Game::GUESS_COLORS.reduce('') { |output, (letter, color)| "#{output}#{letter} = #{'●'.colorize(color)} " })
+    guess = gets.chomp.chars
+    output = guess.map { |char| '●'.colorize(Game::GUESS_COLORS[char]) }
     board.guesses[guess_number] = output
   end
 end
