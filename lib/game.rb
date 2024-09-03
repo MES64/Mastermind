@@ -11,10 +11,12 @@ class Game
   include PinCreatable
 
   MAX_GUESSES = 12
+  PIN_GROUP_SIZE = 4
+  COMBINATIONS = GUESS_COLORS.keys.repeated_permutation(PIN_GROUP_SIZE).map { |perm| perm }.freeze
 
   def initialize
-    @board = Board.new(MAX_GUESSES)
-    @code_maker = CodeMaker.new
+    @board = Board.new(MAX_GUESSES, PIN_GROUP_SIZE)
+    @code_maker = CodeMaker.new(COMBINATIONS)
     @code_breaker = CodeBreaker.new
     @guess_number = 0
     @result = nil
@@ -30,7 +32,7 @@ class Game
   private
 
   def play_turn
-    @code_breaker.make_guess(@board, @guess_number)
+    @code_breaker.make_guess(@board, @guess_number, COMBINATIONS)
     @code_maker.give_hint(@board, @guess_number)
     puts @board
     @guess_number += 1

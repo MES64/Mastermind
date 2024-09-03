@@ -9,10 +9,10 @@ require_relative 'pin_creatable'
 class CodeBreaker
   include PinCreatable
 
-  def make_guess(board, guess_number)
+  def make_guess(board, guess_number, combinations)
     puts 'Enter Guess (e.g. rgbb) from:'
     puts string_guess_pin_colors
-    guess = gets.chomp.chars until guess && Board::COMBINATIONS.include?(guess)
+    guess = gets.chomp.chars until guess && combinations.include?(guess)
     board.add_guess(guess, guess_number)
   end
 end

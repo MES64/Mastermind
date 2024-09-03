@@ -10,8 +10,8 @@ class CodeMaker
 
   attr_reader :code
 
-  def initialize
-    @code = Board::COMBINATIONS.sample
+  def initialize(combinations)
+    @code = combinations.sample
     @code_tally = @code.tally
   end
 
