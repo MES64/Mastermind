@@ -32,7 +32,7 @@ class Board
   end
 
   def to_s
-    (0...MAX_GUESSES).reduce('GUESSES | HINTS') do |board, idx|
+    (MAX_GUESSES - 1).downto(0).reduce('GUESSES | HINTS') do |board, idx|
       "#{board}\n#{@guesses[idx].join(' ')} | #{@hints[idx].join(' ')}"
     end
   end
