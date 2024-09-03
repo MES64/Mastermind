@@ -19,6 +19,7 @@ class Game
     puts @board
     play_turn while @result.nil?
     puts @result
+    puts "Secret Code: #{@code_maker.code.map { |char| '●'.colorize(Board::GUESS_COLORS[char]) }.join(' ')}"
   end
 
   private
