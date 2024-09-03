@@ -21,10 +21,13 @@ class CodeMaker
     board.add_hint(red_pins, white_pins, guess_number)
   end
 
+  def reveal_code
+    puts "Secret Code: #{create_guess_pins(@code).join(' ')}"
+  end
+
   private
 
   def sum_min_tallies(guess_tally)
-    # guess_tally.keys.concat(@code_tally).uniq
     GUESS_COLORS.keys.reduce(0) do |sum, color|
       sum += [guess_tally[color], @code_tally[color]].min if guess_tally[color] && @code_tally[color]
       sum

@@ -26,7 +26,7 @@ class Game
     puts @board
     play_turn while @result.nil?
     puts @result
-    puts "Secret Code: #{create_guess_pins(@code_maker.code).join(' ')}"
+    @code_maker.reveal_code
   end
 
   private
