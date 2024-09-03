@@ -10,8 +10,10 @@ require_relative 'pin_creatable'
 class Game
   include PinCreatable
 
+  MAX_GUESSES = 12
+
   def initialize
-    @board = Board.new
+    @board = Board.new(MAX_GUESSES)
     @code_maker = CodeMaker.new
     @code_breaker = CodeBreaker.new
     @guess_number = 0
@@ -38,7 +40,7 @@ class Game
   def check_game_over
     if @board.latest_hint == %w[r r r r]
       @result = 'The code is cracked! The code breaker wins!'
-    elsif @guess_number == Board::MAX_GUESSES
+    elsif @guess_number == MAX_GUESSES
       @result = 'There are no more guesses! The code maker wins!'
     end
   end

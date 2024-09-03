@@ -8,17 +8,16 @@ require_relative 'pin_creatable'
 class Board
   include PinCreatable
 
-  MAX_GUESSES = 12
   PIN_GROUP_SIZE = 4
   COMBINATIONS = GUESS_COLORS.keys.repeated_permutation(PIN_GROUP_SIZE).map { |perm| perm }.freeze
 
   attr_reader :latest_guess, :latest_hint
 
-  def initialize
+  def initialize(max_guesses)
     @latest_guess = nil
     @latest_hint = nil
-    @guesses = Array.new(MAX_GUESSES) { Array.new(PIN_GROUP_SIZE, '.') }
-    @hints = Array.new(MAX_GUESSES) { Array.new(PIN_GROUP_SIZE, '.') }
+    @guesses = Array.new(max_guesses) { Array.new(PIN_GROUP_SIZE, '.') }
+    @hints = Array.new(max_guesses) { Array.new(PIN_GROUP_SIZE, '.') }
   end
 
   def add_guess(guess, guess_number)
@@ -33,7 +32,7 @@ class Board
   end
 
   def to_s
-    (MAX_GUESSES - 1).downto(0).reduce('GUESSES | HINTS') do |board, idx|
+    (@guesses.length - 1).downto(0).reduce('GUESSES | HINTS') do |board, idx|
       "#{board}\n#{@guesses[idx].join(' ')} | #{@hints[idx].join(' ')}"
     end
   end
