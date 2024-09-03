@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
+require_relative 'pin_creatable'
+
 # Board conatins information about the guesses made and hints given
 # Constants: Number of guesses possible, and the number of guess and hint pegs possible per row
 # Methods include to_s and accessors for the guesses and hints
 class Board
+  include PinCreatable
+
   MAX_GUESSES = 12
   GUESSES_PER_ROW = 4
   HINTS_PER_ROW = 4
-  GUESS_COLORS = { 'r' => :red, 'g' => :green, 'y' => :yellow, 'b' => :blue, 'w' => :white, 'd' => :black }.freeze
-  HINT_COLORS = { 'r' => :red, 'w' => :white }.freeze
   COMBINATIONS = GUESS_COLORS.keys.repeated_permutation(GUESSES_PER_ROW).map { |perm| perm }.freeze
 
   attr_reader :latest_guess, :latest_hint
@@ -22,13 +24,13 @@ class Board
 
   def add_guess(guess, guess_number)
     @latest_guess = guess
-    @guesses[guess_number] = guess.map { |char| '●'.colorize(GUESS_COLORS[char]) }
+    @guesses[guess_number] = create_guess_pins(guess)
   end
 
   def add_hint(red_pins, white_pins, guess_number)
     @latest_hint = Array.new(red_pins, 'r').concat(Array.new(white_pins, 'w'))
     blanks = HINTS_PER_ROW - red_pins - white_pins
-    @hints[guess_number] = @latest_hint.map { |char| '●'.colorize(HINT_COLORS[char]) }.concat(Array.new(blanks, '.'))
+    @hints[guess_number] = create_hint_pins(@latest_hint).concat(Array.new(blanks, '.'))
   end
 
   def to_s

@@ -3,10 +3,13 @@
 require_relative 'board'
 require_relative 'code_breaker'
 require_relative 'code_maker'
+require_relative 'pin_creatable'
 
 # Game contains info about the board, the players, the number of guesses made, and the result
 # It has a method to play the game
 class Game
+  include PinCreatable
+
   def initialize
     @board = Board.new
     @code_maker = CodeMaker.new
@@ -19,7 +22,7 @@ class Game
     puts @board
     play_turn while @result.nil?
     puts @result
-    puts "Secret Code: #{@code_maker.code.map { |char| '●'.colorize(Board::GUESS_COLORS[char]) }.join(' ')}"
+    puts "Secret Code: #{create_guess_pins(@code_maker.code).join(' ')}"
   end
 
   private

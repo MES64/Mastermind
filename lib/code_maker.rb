@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 require_relative 'board'
+require_relative 'pin_creatable'
 
 # Code Maker holds the secret code
 # It has methods for creating the code and giving a hint
 class CodeMaker
+  include PinCreatable
+
   attr_reader :code
 
   def initialize
@@ -21,7 +24,8 @@ class CodeMaker
   private
 
   def sum_min_tallies(guess_tally)
-    Board::GUESS_COLORS.keys.reduce(0) do |sum, color|
+    # guess_tally.keys.concat(@code_tally).uniq
+    GUESS_COLORS.keys.reduce(0) do |sum, color|
       sum += [guess_tally[color], @code_tally[color]].min if guess_tally[color] && @code_tally[color]
       sum
     end
