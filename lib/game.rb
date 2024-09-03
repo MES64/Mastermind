@@ -7,6 +7,7 @@ require_relative 'pin_creatable'
 
 # Game contains info about the board, the players, the number of guesses made, and the result
 # It has a method to play the game
+# It has constants for the game settings, which never change at the moment
 class Game
   include PinCreatable
 

@@ -3,8 +3,8 @@
 require_relative 'pin_creatable'
 
 # Board conatins information about the guesses made and hints given
-# Constants: Number of guesses possible, and the number of guess and hint pegs possible per row
-# Methods include to_s and accessors for the guesses and hints
+# Methods include adding guesses and hints to the board,
+# to_s, and getters for the latest guess and the latest hint
 class Board
   include PinCreatable
 

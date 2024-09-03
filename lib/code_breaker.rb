@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'colorize'
-
-require_relative 'board'
 require_relative 'pin_creatable'
 
 # Code Breaker has a method for making a guess

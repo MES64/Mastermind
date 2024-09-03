@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'board'
 require_relative 'pin_creatable'
 
 # Code Maker holds the secret code
-# It has methods for creating the code and giving a hint
+# It has methods for creating the code (initialize), giving a hint, and revealing the code
 class CodeMaker
   include PinCreatable
-
-  attr_reader :code
 
   def initialize(combinations)
     @code = combinations.sample

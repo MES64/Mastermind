@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+require 'colorize'
+
 # Holds constants related to the creation of pins
-# Has a method for converting color chars like 'r' (red) into circle chars with that color
+# Has methods for converting an array of color chars like 'r' (red)
+# into an array of circle chars with that color; depending on if they are guess or hint pins
+# Has a method for returning a string of all possible guess pin colors
 module PinCreatable
   GUESS_COLORS = { 'r' => :red, 'g' => :green, 'y' => :yellow, 'b' => :blue, 'w' => :white, 'd' => :black }.freeze
   HINT_COLORS = { 'r' => :red, 'w' => :white }.freeze
