@@ -29,8 +29,8 @@ class Board
   end
 
   def to_s
-    (@guesses.length - 1).downto(0).reduce('GUESSES | HINTS') do |board, idx|
+    (@guesses.length - 1).downto(0).reduce("\nGUESSES | HINTS") do |board, idx|
       "#{board}\n#{@guesses[idx].join(' ')} | #{@hints[idx].join(' ')}"
-    end
+    end << "\n\n"
   end
 end
