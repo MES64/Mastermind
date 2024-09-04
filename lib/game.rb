@@ -30,7 +30,7 @@ class Game
   def create_players
     choice = choose('Are you the Code Maker (m) or Code Breaker (b)?', PLAYER_CHOICE)
     @code_maker = choice == ['m'] ? HumanCodeMaker.new(COMBINATIONS) : ComputerCodeMaker.new(COMBINATIONS)
-    @code_breaker = choice == ['b'] ? HumanCodeBreaker.new : ComputerCodeBreaker.new
+    @code_breaker = choice == ['b'] ? HumanCodeBreaker.new(COMBINATIONS) : ComputerCodeBreaker.new(COMBINATIONS)
   end
 
   def play
@@ -43,7 +43,7 @@ class Game
   private
 
   def play_turn
-    @code_breaker.make_guess(@board, @guess_number, COMBINATIONS)
+    @code_breaker.make_guess(@board, @guess_number)
     @code_maker.give_hint(@board, @guess_number)
     puts @board
     @guess_number += 1
