@@ -1,16 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'pin_creatable'
+require_relative 'code_breaker'
 require_relative 'hint_creatable'
 
 # Computer Code Breaker
-class ComputerCodeBreaker
-  include PinCreatable
+class ComputerCodeBreaker < CodeBreaker
   include HintCreatable
-
-  def initialize(combinations)
-    @combinations = combinations
-  end
 
   def make_guess(board, guess_number)
     print 'The computer will now make a guess, to continue press Enter >> '
