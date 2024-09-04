@@ -20,17 +20,13 @@ class Game
   COMBINATIONS = GUESS_COLORS.keys.repeated_permutation(PIN_GROUP_SIZE).map { |perm| perm }.freeze
   PLAYER_CHOICE = [%w[m], %w[b]].freeze
 
+  private_constant :MAX_GUESSES, :PIN_GROUP_SIZE, :COMBINATIONS, :PLAYER_CHOICE
+
   def initialize
     create_players
     @board = Board.new(MAX_GUESSES, PIN_GROUP_SIZE)
     @guess_number = 0
     @result = nil
-  end
-
-  def create_players
-    choice = choose('Are you the Code Maker (m) or Code Breaker (b)?', PLAYER_CHOICE)
-    @code_maker = choice == ['m'] ? HumanCodeMaker.new(COMBINATIONS) : ComputerCodeMaker.new(COMBINATIONS)
-    @code_breaker = choice == ['b'] ? HumanCodeBreaker.new(COMBINATIONS) : ComputerCodeBreaker.new(COMBINATIONS)
   end
 
   def play
@@ -41,6 +37,12 @@ class Game
   end
 
   private
+
+  def create_players
+    choice = choose('Are you the Code Maker (m) or Code Breaker (b)?', PLAYER_CHOICE)
+    @code_maker = choice == ['m'] ? HumanCodeMaker.new(COMBINATIONS) : ComputerCodeMaker.new(COMBINATIONS)
+    @code_breaker = choice == ['b'] ? HumanCodeBreaker.new(COMBINATIONS) : ComputerCodeBreaker.new(COMBINATIONS)
+  end
 
   def play_turn
     @code_breaker.make_guess(@board, @guess_number)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Code Breaker has a method for making a guess
+# Code Breaker
 class CodeBreaker
   def initialize(combinations)
     @combinations = combinations

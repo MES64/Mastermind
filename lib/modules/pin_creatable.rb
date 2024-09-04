@@ -10,6 +10,8 @@ module PinCreatable
   GUESS_COLORS = { 'r' => :red, 'g' => :green, 'y' => :yellow, 'b' => :blue, 'w' => :white, 'd' => :black }.freeze
   HINT_COLORS = { 'r' => :red, 'w' => :white }.freeze
 
+  private_constant :HINT_COLORS
+
   def create_guess_pins(guess)
     create_pins(guess, GUESS_COLORS)
   end
