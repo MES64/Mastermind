@@ -10,5 +10,11 @@ class HumanCodeMaker < CodeMaker
   def initialize(combinations)
     code = choose("Enter Secret Code (e.g. rgbb) from:\n#{string_guess_pin_colors}", combinations)
     super(code)
+    reveal_code
+  end
+
+  def give_hint(board, guess_number)
+    reveal_code
+    super(board, guess_number)
   end
 end
