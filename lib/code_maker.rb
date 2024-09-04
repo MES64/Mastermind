@@ -7,9 +7,9 @@ require_relative 'pin_creatable'
 class CodeMaker
   include PinCreatable
 
-  def initialize(combinations)
-    @code = combinations.sample
-    @code_tally = @code.tally
+  def initialize(code)
+    @code = code
+    @code_tally = code.tally
   end
 
   def give_hint(board, guess_number)
