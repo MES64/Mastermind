@@ -18,12 +18,10 @@ class ComputerCodeBreaker
   end
 
   def reduce_combinations(board)
-    actual_red_pins = board.latest_hint.count('r')
-    actual_white_pins = board.latest_hint.count('w')
     @combinations = @combinations.select do |code|
       red_pins = code.each_index.select { |idx| code[idx] == board.latest_guess[idx] }.length
       white_pins = sum_min_tallies(board.latest_guess.tally, code.tally) - red_pins
-      red_pins == actual_red_pins && white_pins == actual_white_pins
+      red_pins == board.latest_hint[:reds] && white_pins == board.latest_hint[:whites]
     end
   end
 

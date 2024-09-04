@@ -51,7 +51,7 @@ class Game
   end
 
   def check_game_over
-    if @board.latest_hint == %w[r r r r]
+    if @board.latest_hint[:reds] == 4
       @result = 'The code is cracked! The code breaker wins!'
     elsif @guess_number == MAX_GUESSES
       @result = 'There are no more guesses! The code maker wins!'
