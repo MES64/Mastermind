@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'pin_creatable'
+require_relative 'modules/pin_creatable'
 
 # Board conatins information about the guesses made and hints given
 # Methods include adding guesses and hints to the board,

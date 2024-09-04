@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'pin_creatable'
-require_relative 'hint_creatable'
+require_relative '../modules/pin_creatable'
+require_relative '../modules/hint_creatable'
 
 # Code Maker holds the secret code
 # It has methods for creating the code (initialize), giving a hint, and revealing the code

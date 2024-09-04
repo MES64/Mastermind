@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'code_breaker'
-require_relative 'hint_creatable'
+require_relative '../modules/hint_creatable'
 
 # Computer Code Breaker
 class ComputerCodeBreaker < CodeBreaker

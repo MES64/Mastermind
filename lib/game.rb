@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'board'
-require_relative 'human_code_breaker'
-require_relative 'human_code_maker'
-require_relative 'computer_code_breaker'
-require_relative 'computer_code_maker'
-require_relative 'pin_creatable'
-require_relative 'chooseable'
+require_relative 'code_breakers/human_code_breaker'
+require_relative 'code_makers/human_code_maker'
+require_relative 'code_breakers/computer_code_breaker'
+require_relative 'code_makers/computer_code_maker'
+require_relative 'modules/pin_creatable'
+require_relative 'modules/chooseable'
 
 # Game contains info about the board, the players, the number of guesses made, and the result
 # It has a method to play the game

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'code_maker'
-require_relative 'chooseable'
+require_relative '../modules/chooseable'
 
 # Human Code Maker
 class HumanCodeMaker < CodeMaker
