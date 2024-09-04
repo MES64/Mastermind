@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'pin_creatable'
+require_relative 'hint_creatable'
 
 # Computer Code Breaker
 class ComputerCodeBreaker
   include PinCreatable
+  include HintCreatable
 
   def initialize(combinations)
     @combinations = combinations
@@ -17,20 +19,12 @@ class ComputerCodeBreaker
     board.add_guess(@combinations[0], guess_number)
   end
 
-  def reduce_combinations(board)
-    @combinations = @combinations.select do |code|
-      red_pins = code.each_index.select { |idx| code[idx] == board.latest_guess[idx] }.length
-      white_pins = sum_min_tallies(board.latest_guess.tally, code.tally) - red_pins
-      red_pins == board.latest_hint[:reds] && white_pins == board.latest_hint[:whites]
-    end
-  end
-
   private
 
-  def sum_min_tallies(guess_tally, code_tally)
-    GUESS_COLORS.keys.reduce(0) do |sum, color|
-      sum += [guess_tally[color], code_tally[color]].min if guess_tally[color] && code_tally[color]
-      sum
+  def reduce_combinations(board)
+    @combinations = @combinations.select do |code|
+      hint = create_hint(code, board)
+      hint[:reds] == board.latest_hint[:reds] && hint[:whites] == board.latest_hint[:whites]
     end
   end
 end

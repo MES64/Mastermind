@@ -22,10 +22,10 @@ class Board
     @guesses[guess_number] = create_guess_pins(guess)
   end
 
-  def add_hint(red_pins, white_pins, guess_number)
-    @latest_hint = { reds: red_pins, whites: white_pins }
-    hint_pins = Array.new(red_pins, 'r').concat(Array.new(white_pins, 'w'))
-    blanks = @hints[0].length - red_pins - white_pins
+  def add_hint(hint, guess_number)
+    @latest_hint = hint
+    hint_pins = Array.new(hint[:reds], 'r').concat(Array.new(hint[:whites], 'w'))
+    blanks = @hints[0].length - hint[:reds] - hint[:whites]
     @hints[guess_number] = create_hint_pins(hint_pins).concat(Array.new(blanks, '.'))
   end
 

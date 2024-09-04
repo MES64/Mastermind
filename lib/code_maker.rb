@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 require_relative 'pin_creatable'
+require_relative 'hint_creatable'
 
 # Code Maker holds the secret code
 # It has methods for creating the code (initialize), giving a hint, and revealing the code
 class CodeMaker
   include PinCreatable
+  include HintCreatable
 
   def initialize(code)
     @code = code
@@ -13,21 +15,10 @@ class CodeMaker
   end
 
   def give_hint(board, guess_number)
-    red_pins = @code.each_index.select { |idx| @code[idx] == board.latest_guess[idx] }.length
-    white_pins = sum_min_tallies(board.latest_guess.tally) - red_pins
-    board.add_hint(red_pins, white_pins, guess_number)
+    board.add_hint(create_hint(@code, board), guess_number)
   end
 
   def reveal_code
     puts "Secret Code: #{create_guess_pins(@code).join(' ')}"
-  end
-
-  private
-
-  def sum_min_tallies(guess_tally)
-    GUESS_COLORS.keys.reduce(0) do |sum, color|
-      sum += [guess_tally[color], @code_tally[color]].min if guess_tally[color] && @code_tally[color]
-      sum
-    end
   end
 end
